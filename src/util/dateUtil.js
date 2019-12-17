@@ -4,7 +4,7 @@ import { LANG_EN } from '../common/constants';
 
 const initTimeAgo = date => {
   TimeAgo.addLocale(en);
-  return new TimeAgo(LANG_EN).format(Date.now() - new Date(date).getTime());
+  return new TimeAgo(LANG_EN).format(new Date(date));
 };
 
 export { initTimeAgo };
