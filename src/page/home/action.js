@@ -14,18 +14,18 @@ import {
   ENDPOINT_POINTS,
   ENDPOINT_VEHICLES,
   KEY_LOADING_INFO,
-  KEY_LOADING_VEHICLES
+  KEY_LOADING_VEHICLES,
 } from '../../common/constants';
 import httpClient from '../../service/httpClient';
 
-export const setApiKey = value => ({
+export const setApiKey = (value) => ({
   type: ACTION_SET_API_KEY,
-  value
+  value,
 });
 
-const toggleLoading = key => ({
+const toggleLoading = (key) => ({
   type: ACTION_TOGGLE_LOADING,
-  key
+  key,
 });
 
 export const findVehicles = (apiKey, dispatch) => {
@@ -47,14 +47,14 @@ export const findVehicles = (apiKey, dispatch) => {
   }
 };
 
-export const setVehicle = value => ({
+export const setVehicle = (value) => ({
   type: ACTION_SELECT_VEHICLE,
-  value
+  value,
 });
 
-export const setDate = value => ({
+export const setDate = (value) => ({
   type: ACTION_SET_DATE,
-  value
+  value,
 });
 
 export const findInfoById = (id, date, dispatch) => {
@@ -67,7 +67,7 @@ export const findInfoById = (id, date, dispatch) => {
         dispatch({ type: ACTION_GET_POINTS, response, date });
         dispatch(toggleLoading(KEY_LOADING_INFO));
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         dispatch({ type: ACTION_GET_POINTS_ERROR });
         dispatch(toggleLoading(KEY_LOADING_INFO));
@@ -77,12 +77,12 @@ export const findInfoById = (id, date, dispatch) => {
   }
 };
 
-export const setPosition = value => ({
+export const setPosition = (value) => ({
   type: ACTION_SET_POSITION,
-  value
+  value,
 });
 
-export const setViewport = value => ({
+export const setViewport = (value) => ({
   type: ACTION_SET_VIEWPORT,
-  value
+  value,
 });

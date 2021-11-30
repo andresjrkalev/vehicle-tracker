@@ -4,7 +4,7 @@ import { faCalendar, faMapPin } from '@fortawesome/free-solid-svg-icons';
 import Home from './page/home';
 import './style/style.scss';
 
-const App = () => {
+const App = function () {
   library.add(faCalendar, faMapPin);
   return (
     <div className="container">

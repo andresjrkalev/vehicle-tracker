@@ -1,11 +1,11 @@
 import {
-  KEY_SPEED,
   KEY_LAST_UPDATE,
+  KEY_SHORTEST,
+  KEY_SPEED,
+  KEY_TOTAL,
   STRING_EMPTY,
   SYMBOL_KM,
   SYMBOL_SPEED,
-  KEY_TOTAL,
-  KEY_SHORTEST
 } from '../common/constants';
 import { initTimeAgo } from './dateUtil';
 

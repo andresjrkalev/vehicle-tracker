@@ -1,5 +1,5 @@
-import home from './page/home/reducer';
 import { combineReducers, createStore } from 'redux';
+import home from './page/home/reducer';
 import { KEY_STORE } from './common/constants';
 
 const rootReducer = combineReducers({ home });

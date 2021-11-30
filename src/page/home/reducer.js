@@ -15,7 +15,7 @@ import {
   ERROR_EMPTY_VEHICLE,
   ERROR_FAULTY_API_KEY,
   ERROR_FAULTY_DATE,
-  ERROR_NOT_FOUND_INFO
+  ERROR_NOT_FOUND_INFO,
 } from '../../common/constants';
 
 const initialState = {
@@ -27,27 +27,27 @@ const initialState = {
   info: {
     distance: {
       total: undefined,
-      shortest: undefined
+      shortest: undefined,
     },
     stopsCount: undefined,
-    points: []
+    points: [],
   },
   position: undefined,
   error: {
     apiKey: undefined,
-    date: undefined
+    date: undefined,
   },
   loading: {
     vehicles: false,
-    info: false
+    info: false,
   },
   viewport: {
     latitude: 58,
     longitude: 25,
     zoom: 5.5,
     width: 500,
-    height: 500
-  }
+    height: 500,
+  },
 };
 
 export default (state = initialState, action) => {
@@ -56,27 +56,31 @@ export default (state = initialState, action) => {
       return { ...state, apiKey: action.value };
     case ACTION_GET_VEHICLES: {
       const { response } = action;
-      const vehicles = response.map(({ objectId, objectName, speed, timestamp }) => ({
+      const vehicles = response.map(({
+        objectId, objectName, speed, timestamp,
+      }) => ({
         objectId,
         objectName,
         speed,
-        lastUpdated: timestamp
+        lastUpdated: timestamp,
       }));
       const locations = response.map(({ objectName, latitude, longitude }) => ({
         objectName,
         latitude,
-        longitude
+        longitude,
       }));
       const locationsCount = locations.length;
       const position = {
         latitude:
-          locations.map(({ latitude }) => latitude).reduce((prev, next) => prev + next) /
-          locationsCount,
+          locations.map(({ latitude }) => latitude).reduce((prev, next) => prev + next)
+          / locationsCount,
         longitude:
-          locations.map(({ longitude }) => longitude).reduce((prev, next) => prev + next) /
-          locationsCount
+          locations.map(({ longitude }) => longitude).reduce((prev, next) => prev + next)
+          / locationsCount,
       };
-      return { ...state, vehicles, locations, position, error: initialState.error };
+      return {
+        ...state, vehicles, locations, position, error: initialState.error,
+      };
     }
     case ACTION_GET_VEHICLES_ERROR:
       return { ...state, error: { apiKey: ERROR_FAULTY_API_KEY } };
@@ -89,7 +93,7 @@ export default (state = initialState, action) => {
     case ACTION_GET_POINTS: {
       const { response, date } = action;
       const info = response.filter(
-        ({ timestamp }) => new Date(timestamp).toDateString() === new Date(date).toDateString()
+        ({ timestamp }) => new Date(timestamp).toDateString() === new Date(date).toDateString(),
       );
       if (info.length) {
         const distances = info.map(({ Distance }) => Distance);
@@ -100,7 +104,7 @@ export default (state = initialState, action) => {
         return {
           ...state,
           info: { distance: { total, shortest }, stopsCount, points },
-          error: initialState.error
+          error: initialState.error,
         };
       }
       return { ...state, error: { date: ERROR_NOT_FOUND_INFO } };

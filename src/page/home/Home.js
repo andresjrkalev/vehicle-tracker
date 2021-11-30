@@ -9,11 +9,11 @@ import {
   LABEL_TOTAL_DISTANCE,
   TABLE_HEADER_LAST_UPDATED,
   TABLE_HEADER_NAME,
-  TABLE_HEADER_SPEED
+  TABLE_HEADER_SPEED,
 } from '../../common/constants';
 import CustomMap from '../../common/component/Map';
 
-const Home = ({
+const Home = function ({
   apiKey,
   vehicles,
   locations,
@@ -30,12 +30,12 @@ const Home = ({
   setDate,
   findInfoById,
   setPosition,
-  setViewport
-}) => {
+  setViewport,
+}) {
   const {
     distance: { total, shortest },
     stopsCount,
-    points
+    points,
   } = info;
   return (
     <div className="row m-1">
@@ -47,7 +47,7 @@ const Home = ({
           value={apiKey}
           error={error.apiKey}
           loading={loading.vehicles}
-          onChange={value => setApiKey(value)}
+          onChange={(value) => setApiKey(value)}
           onClick={() => findVehicles(apiKey)}
         />
         <hr />
@@ -58,7 +58,7 @@ const Home = ({
               body={vehicles}
               selected={vehicle}
               prop="objectId"
-              onClick={item => setVehicle(item)}
+              onClick={(item) => setVehicle(item)}
             />
             <InputGroup
               label="Date:"
@@ -66,14 +66,14 @@ const Home = ({
               value={date}
               error={error.date}
               loading={loading.info}
-              onChange={value => setDate(value)}
+              onChange={(value) => setDate(value)}
               onClick={() => findInfoById(vehicle ? vehicle.objectId : undefined, date)}
             />
             <Table
               body={[
                 { label: LABEL_TOTAL_DISTANCE, total: Math.round(total) },
                 { label: LABEL_NO_STOPS, stopsCount },
-                { label: LABEL_SHORTEST_DISTANCE, shortest }
+                { label: LABEL_SHORTEST_DISTANCE, shortest },
               ]}
             />
           </div>

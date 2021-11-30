@@ -2,9 +2,12 @@ import React from 'react';
 import { CLASS_TABLE_PRIMARY, KEY_ID, STRING_EMPTY } from '../constants';
 import { createMessage } from '../../util/messageUtil';
 
-const Table = ({ headers, body, onClick, selected, prop }) => (
-  <table className="table table-bordered table-striped">
-    {headers && (
+const Table = function ({
+  headers, body, onClick, selected, prop,
+}) {
+  return (
+    <table className="table table-bordered table-striped">
+      {headers && (
       <thead>
         <tr>
           {headers.map((header, index) => (
@@ -14,8 +17,8 @@ const Table = ({ headers, body, onClick, selected, prop }) => (
           ))}
         </tr>
       </thead>
-    )}
-    {body && (
+      )}
+      {body && (
       <tbody>
         {body.map((item, index) => (
           <tr
@@ -25,19 +28,20 @@ const Table = ({ headers, body, onClick, selected, prop }) => (
               selected && selected[prop] === item[prop] ? CLASS_TABLE_PRIMARY : STRING_EMPTY
             }
           >
-            {Object.keys(item).map(key => {
+            {Object.keys(item).map((key) => {
               const keyLowercase = key.toLowerCase();
               return (
                 !keyLowercase.includes(KEY_ID) && (
-                  <td key={key}>{createMessage(keyLowercase, item[key])}</td>
+                <td key={key}>{createMessage(keyLowercase, item[key])}</td>
                 )
               );
             })}
           </tr>
         ))}
       </tbody>
-    )}
-  </table>
-);
+      )}
+    </table>
+  );
+};
 
 export default Table;

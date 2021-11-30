@@ -1,14 +1,18 @@
 import React from 'react';
+import {
+  FeatureGroup, Map, Marker, Polyline, TileLayer, Tooltip,
+} from 'react-leaflet';
 import { STRING_EMPTY } from '../constants';
-import { FeatureGroup, Map, Marker, Polyline, TileLayer, Tooltip } from 'react-leaflet';
 import { createIcon } from '../../util/iconUtil';
 import pin from '../../icon/pin.svg';
 
-const CustomMap = ({ position, setPosition, locations, viewport, setViewport, points }) => {
+const CustomMap = function ({
+  position, setPosition, locations, viewport, setViewport, points,
+}) {
   if (!position && navigator && navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => setPosition({ latitude, longitude }),
-      () => setPosition({ latitude: 57, longitude: 24 })
+      () => setPosition({ latitude: 57, longitude: 24 }),
     );
     return STRING_EMPTY;
   }

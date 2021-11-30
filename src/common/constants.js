@@ -13,9 +13,8 @@ export const ACTION_SET_VIEWPORT = 'ACTION_SET_VIEWPORT';
 
 export const CLASS_TABLE_PRIMARY = 'table-primary';
 
-export const ENDPOINT_POINTS = id =>
-  `/Vehicles/getRawData?objectId=${id}&begTimestamp=2019-09-30&endTimestamp=2019-10-01&key=home.assignment-699172&json`;
-export const ENDPOINT_VEHICLES = apiKey => `/Vehicles/getLastData?key=${apiKey}&json`;
+export const ENDPOINT_POINTS = (id) => `/Vehicles/getRawData?objectId=${id}&begTimestamp=2019-09-30&endTimestamp=2019-10-01&key=home.assignment-699172&json`;
+export const ENDPOINT_VEHICLES = (apiKey) => `/Vehicles/getLastData?key=${apiKey}&json`;
 const ERROR = 'Something went wrong.';
 export const ERROR_EMPTY_API_KEY = 'Field is empty!';
 export const ERROR_EMPTY_VEHICLE = 'Vehicle is not selected!';
